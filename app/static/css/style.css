@@ -1,0 +1,19 @@
+body{
+
+    background:#f5f7fa;
+
+    min-height:100vh;
+
+}
+
+.navbar-brand{
+
+    font-size:1.35rem;
+
+}
+
+footer{
+
+    margin-top:auto;
+
+}

@@ -1,0 +1,410 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+AI Interview Report
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
+
+    <div class="card shadow-lg border-0 mb-5">
+        <div class="card-body text-center py-5">
+
+            <h1 class="display-5 fw-bold">
+                🤖 AI Interview Report
+            </h1>
+
+            <p class="text-muted">
+                Complete AI Performance Evaluation
+            </p>
+
+            <h1 class="display-1 text-primary fw-bold mt-4">
+                {{ report.overall_score }}%
+            </h1>
+
+            <div class="progress mt-4" style="height:20px;">
+
+                <div class="progress-bar bg-primary"
+
+                     style="width: {{ report.overall_score }}%;">
+
+                </div>
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <a href="{{ url_for('reports.download', interview_id=interview_id) }}"
+                class="btn btn-success">
+
+                    <i class="bi bi-download"></i>
+                    Download PDF
+
+                </a>
+
+                <a href="{{ url_for('dashboard.dashboard_home') }}"
+                class="btn btn-outline-secondary">
+
+                    <i class="bi bi-house"></i>
+                    Dashboard
+
+                </a>
+
+            </div>
+
+            <div class="mt-4">
+
+                {% if report.hiring_recommendation == "Hire" %}
+
+                <span class="badge bg-success fs-5 px-4 py-3">
+
+                    ✅ Hire
+
+                </span>
+
+                {% elif report.hiring_recommendation == "Maybe" %}
+
+                <span class="badge bg-warning text-dark fs-5 px-4 py-3">
+
+                    ⚠️ Maybe
+
+                </span>
+
+                {% else %}
+
+                <span class="badge bg-danger fs-5 px-4 py-3">
+
+                    ❌ Reject
+
+                </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- PERFORMANCE -->
+    <!-- ========================= -->
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <h3 class="mb-4">
+
+                📊 Performance Breakdown
+
+            </h3>
+
+            <p><strong>Technical Skills</strong></p>
+
+            <div class="progress mb-3">
+
+                <div class="progress-bar bg-success"
+
+                     style="width: {{ report.technical_score }}%;">
+
+                    {{ report.technical_score }}%
+
+                </div>
+
+            </div>
+
+            <p><strong>Communication</strong></p>
+
+            <div class="progress mb-3">
+
+                <div class="progress-bar bg-info"
+
+                     style="width: {{ report.communication_score }}%;">
+
+                    {{ report.communication_score }}%
+
+                </div>
+
+            </div>
+
+            <p><strong>Behavioral Skills</strong></p>
+
+            <div class="progress">
+
+                <div class="progress-bar bg-warning text-dark"
+
+                     style="width: {{ report.behavioral_score }}%;">
+
+                    {{ report.behavioral_score }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- VOICE + FACE -->
+    <!-- ========================= -->
+
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow h-100 border-0">
+
+                <div class="card-body">
+
+                    <h3 class="mb-4">
+
+                        🎤 Voice Analysis
+
+                    </h3>
+
+                    <table class="table">
+
+                        <tr>
+
+                            <th>Voice Score</th>
+
+                            <td>{{ answer.voice_score }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Speech Rate</th>
+
+                            <td>{{ answer.speech_rate }} WPM</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Pace</th>
+
+                            <td>{{ answer.voice_pace }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Fluency</th>
+
+                            <td>{{ answer.voice_fluency }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Filler Words</th>
+
+                            <td>{{ answer.filler_words }}</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow h-100 border-0">
+
+                <div class="card-body">
+
+                    <h3 class="mb-4">
+
+                        👀 Face Analysis
+
+                    </h3>
+
+                    <table class="table">
+
+                        <tr>
+
+                            <th>Eye Contact</th>
+
+                            <td>{{ answer.eye_contact }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Face Detection</th>
+
+                            <td>{{ answer.face_detection }}%</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Confidence</th>
+
+                            <td>Good</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- STRENGTHS -->
+    <!-- ========================= -->
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <h3 class="text-success">
+
+                💪 Strengths
+
+            </h3>
+
+            <hr>
+
+            {% if strengths %}
+
+                {% for item in strengths %}
+
+                <p>
+
+                    ✅ {{ item }}
+
+                </p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="text-muted">
+
+                    No strengths available.
+
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- WEAKNESSES -->
+    <!-- ========================= -->
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <h3 class="text-danger">
+
+                ⚠️ Weaknesses
+
+            </h3>
+
+            <hr>
+
+            {% if weaknesses %}
+
+                {% for item in weaknesses %}
+
+                <p>
+
+                    ❌ {{ item }}
+
+                </p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="text-muted">
+
+                    No weaknesses available.
+
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- RECOMMENDATIONS -->
+    <!-- ========================= -->
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <h3 class="text-primary">
+
+                💡 AI Recommendations
+
+            </h3>
+
+            <hr>
+
+            {% if recommendations %}
+
+                {% for item in recommendations %}
+
+                <p>
+
+                    👉 {{ item }}
+
+                </p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="text-muted">
+
+                    No recommendations available.
+
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

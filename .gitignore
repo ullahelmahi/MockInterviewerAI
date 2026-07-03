@@ -1,0 +1,92 @@
+# ----------------------------
+# Python
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.env
+
+# SQLite
+*.db
+*.sqlite3
+instance/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Logs
+*.log
+
+# Temporary Files
+temp/
+
+# Generated Reports
+reports/
+
+# Uploads
+uploads/
+
+# Python Build
+build/
+dist/
+*.egg-info/
+
+# Flask
+.flaskenv
+
+# Cache
+.pytest_cache/
+.mypy_cache/
+
+# Python bytecode
+*.pyo
+*.pyd
+
+# Coverage
+.coverage
+htmlcov/
+
+# Environment files
+.env.local
+.env.*.local
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Python virtual environment
+venv/
+
+# Uploaded interview media
+uploads/interviews/
+
+# Temporary files
+*.wav
+*.mp3
+*.png
+*.jpg
+*.jpeg
+
+# Logs
+*.log

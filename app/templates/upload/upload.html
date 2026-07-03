@@ -1,0 +1,68 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Upload Resume
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <h3>Upload Resume</h3>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        {{ form.hidden_tag() }}
+
+                        <div class="mb-3">
+                            {{ form.target_job.label(class="form-label") }}
+                            {{ form.target_job(class="form-control",
+                                placeholder="e.g. Backend Developer") }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.experience_level.label(class="form-label") }}
+
+                            {% for subfield in form.experience_level %}
+                                <div class="form-check">
+                                    {{ subfield(class="form-check-input") }}
+                                    {{ subfield.label(class="form-check-label") }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.resume.label(class="form-label") }}
+                            {{ form.resume(class="form-control") }}
+                        </div>
+
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
